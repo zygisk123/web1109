@@ -21,7 +21,11 @@ class Item{
     {
         $items = [];
         $db = new DB();
-        $query = "SELECT * FROM `items`";
+        if (isset($_POST['orderBy'])) {
+            $query = "SELECT * FROM `items` ORDER BY " . $_POST['orderBy'];
+        }else{
+            $query = "SELECT * FROM `items`";
+        }
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
             $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
@@ -74,18 +78,7 @@ class Item{
         $stmt->close();
         $db->conn->close(); 
     }
-
-    public static function categories()
-    {
-        $categories = [];
-        $db = new DB();
-        $query = "SELECT * FROM `items`";
-        $result = $db->conn->query($query);
-        while ($row = $result->fetch_assoc()) {
-            $categories[] = new Item($row['category']);
-        }
-        $db->conn->close();
-        return $categories;
-    }
+    
 }
 ?>
+

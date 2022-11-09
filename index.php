@@ -28,16 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         die;
     }
     if(isset($_POST['order'])){
-        if(!empty($_POST['orderBy'])) {
-            $selected = $_POST['orderBy'];
-            echo 'You have chosen: ' . $selected;
-        } else {
-            echo 'Please select the value.';
-        }
+        $items = ItemController::index();
     }
 }
 $items = ItemController::index();
-$allCategories = ItemController::getCategories();
 ?>
 <!DOCTYPE html>
 <html lang="en">
