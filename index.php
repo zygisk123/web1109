@@ -27,9 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: ./index.php");
         die;
     }
+    if(isset($_POST['order'])){
+        if(!empty($_POST['orderBy'])) {
+            $selected = $_POST['orderBy'];
+            echo 'You have chosen: ' . $selected;
+        } else {
+            echo 'Please select the value.';
+        }
+    }
 }
 $items = ItemController::index();
-
+$allCategories = ItemController::getCategories();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,14 +83,17 @@ $items = ItemController::index();
             </div>
             <div class="col-4"></div>
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+                <form action="" method="post">
+                    <select name="orderBy">
+                        <option value="" disabled selected>ORDER BY</option>
+                        <option value="id">ID</option>
+                        <option value="name">NAME</option>
+                        <option value="category">CATEGORY</option>
+                        <option value="price">PRICE</option>
+                        <option value="about">ABOUT</option>
+                    </select>
+                    <input type="submit" name="order" value="orderBy">
+                </form>
             </div>
             <table class="table">
                 <thead>

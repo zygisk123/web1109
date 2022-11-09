@@ -74,5 +74,18 @@ class Item{
         $stmt->close();
         $db->conn->close(); 
     }
+
+    public static function categories()
+    {
+        $categories = [];
+        $db = new DB();
+        $query = "SELECT * FROM `items`";
+        $result = $db->conn->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $categories[] = new Item($row['category']);
+        }
+        $db->conn->close();
+        return $categories;
+    }
 }
 ?>

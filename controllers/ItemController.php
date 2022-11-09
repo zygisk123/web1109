@@ -36,6 +36,11 @@ class ItemController{
         Item::destroy($_POST['id']);
     }
 
+    public static function getCategories()
+    {
+        $itemsCategories = Item::categories();
+        return $itemsCategories;
+    }
 }
 
 ?>
