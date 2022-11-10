@@ -54,6 +54,12 @@ class ItemController{
         return $items;
     }
 
+    public static function getCategories()
+    {
+        $categories = Item::getCategories();
+        return $categories;
+    }
+
 }
 
 ?>

@@ -124,6 +124,21 @@ class Item{
         $stmt->close();
         $db->conn->close(); 
     }
+
+    public static function getCategories()
+    {
+        $categories = [];
+        $db = new DB();
+        $query = "SELECT DISTINCT `category` FROM `items`";
+        $result = $db->conn->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $categories[] = $row["category"];
+        }
+        // print_r($categories);
+        // die;
+        $db->conn->close();
+        return $categories;
+    }
     
 }
 ?>
