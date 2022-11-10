@@ -65,6 +65,11 @@ class ItemController{
         return Item::filter();
     }
 
+    public static function search()
+    {
+        return Item::search();
+    }
+
 }
 
 ?>
