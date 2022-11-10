@@ -2,6 +2,7 @@
 include "./controllers/ItemController.php";
 
 $edit = false;
+$orderFilteredItem = false;
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST['save'])){
         ItemController::store();
@@ -27,15 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: ./index.php");
         die;
     }
-    if(isset($_POST['order'])){
+}else{
+    if(isset($_GET['order'])){
+        $items = ItemController::order();
+    }elseif(isset($_GET['filter'])){
+        $items = ItemController::filter();
+        $orderFilteredItem = true;
+    }else{
         $items = ItemController::index();
     }
-    if(isset($_POST['filter'])){
-        $items = ItemController::filter();
+    if(isset($_GET['orderFiltered'])){
+       // $items = ItemController::
+        echo $_GET['filter2'];
     }
-}else{
-
-    $items = ItemController::index();
 }
 ?>
 <!DOCTYPE html>
@@ -82,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
             <div class="col-4"></div>
             <div class="dropdown col-4">
-                <form action="" method="post">
+                <form action="" method="get">
                     <select style = "width : 50%; display: inline-block" class="form-select form-select-sm" name="orderBy">
                         <option value="" disabled selected>RUSIUOTI</option>
                         <option value="id">ID</option>
@@ -91,11 +96,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <option value="price">PRICE</option>
                         <option value="about">ABOUT</option>
                     </select>
-                    <button  class="btn btn-primary mt-3 mb-3" type="submit" name="order" value="orderBy">RUSIUOTI</button>
+                    <?php if($orderFilteredItem){ ?>
+                        <input type="hidden" name="filter2" value="<?=$_GET['filterBy']?>">;
+                        <button  class="btn btn-primary mt-3 mb-3" type="submit" name="orderFiltered" value="orderBy">RUSIUOTI</button>
+                    <?php } else { ?>
+                        <button  class="btn btn-primary mt-3 mb-3" type="submit" name="order" value="orderBy">RUSIUOTI</button>
+                    <?php } ?>
                 </form>
             </div>
             <div class="dropdown col-4">
-                <form action="" method="post">
+                <form action="" method="get">
                     <select style = "width : 50%; display: inline-block" class="form-select form-select-sm" name="filterBy">
                         <option value="" disabled selected>Filtruoti</option>
                         <option value="valgomojo komplektai">VALGOMOJO KOMPLEKTAI</option>

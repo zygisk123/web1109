@@ -42,6 +42,12 @@ class ItemController{
         return $items;
     }
 
+    public static function order()
+    {
+        $items = Item::orderBy();
+        return $items;
+    }
+
 }
 
 ?>

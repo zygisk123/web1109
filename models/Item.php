@@ -21,11 +21,7 @@ class Item{
     {
         $items = [];
         $db = new DB();
-        if (isset($_POST['orderBy'])) {
-            $query = "SELECT * FROM `items` ORDER BY " . $_POST['orderBy'];
-        }else{
-            $query = "SELECT * FROM `items`";
-        }
+        $query = "SELECT * FROM `items`";
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
             $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
@@ -58,11 +54,27 @@ class Item{
         return $item;
     }
 
+    public static function orderBy()
+    {
+        $items = [];
+        $db = new DB();
+        $query = "SELECT * FROM `items` ORDER BY " . $_GET['orderBy'];
+        // echo($query);
+        // die;
+        $result = $db->conn->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
+        }
+        // print_r($items);
+        // die;
+        $db->conn->close();
+        return $items;
+    }
     public static function filterBy()
     {
         $items = [];
         $db = new DB();
-        $query = "SELECT * FROM `items` WHERE `category` = '". $_POST['filterBy']."'";
+        $query = "SELECT * FROM `items` WHERE `category` = '". $_GET['filterBy']."'";
         // echo($query);
         // die;
         $result = $db->conn->query($query);
