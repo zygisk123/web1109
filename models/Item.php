@@ -140,6 +140,47 @@ class Item{
         return $categories;
     }
     
+    public static function filter()
+    {
+        $items = [];
+        $db = new DB();
+        $query = "SELECT * FROM `items`";
+        $first = true;
+        if ($_GET["filterByCategory"] != "") {
+            $query .= "WHERE `category` = '" . $_GET["filterByCategory"] . "' ";
+            $first = false;
+        }
+
+        if ($_GET["from"] != "") {
+            $query .= (($first)? "WHERE" : "AND") . " `price` >= " . $_GET['from'] . " ";
+            $first = false;
+        }
+        if ($_GET["to"] != "") {
+            $query .= (($first)? "WHERE" : "AND") . " `price` <= " . $_GET['to'] . " ";
+            $first = false;
+        }
+        switch ($_GET['sort']) {
+            case '1':
+                $query .= "ORDER by `price`";
+                break;
+            case '2':
+                $query .= "ORDER by `price` DESC";
+                break;
+            case '3':
+                $query .= "ORDER by `name`";
+                break;
+            case '4':
+                $query .= "ORDER by `name` DESC";
+                break;
+            
+        }
+        $result = $db->conn->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
+        }
+        $db->conn->close();
+        return $items;
+    }
 }
 ?>
 

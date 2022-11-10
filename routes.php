@@ -28,21 +28,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 if ($_SERVER['REQUEST_METHOD'] == "GET"){
-    if(isset($_GET['order'])){
-        $items = ItemController::order();
-    }
-    if(isset($_GET['filter'])){
-        $filter = $_GET['filterBy'];
+    // if(isset($_GET['order'])){
+    //     $items = ItemController::order();
+    // }
+    // if(isset($_GET['filter'])){
+    //     $filter = $_GET['filterBy'];
+    //     $items = ItemController::filter();
+    //     $orderFilteredItem = true;
+    // }
+    // if(isset($_GET['orderFiltered'])){
+        //     $filter = $_GET['filter2'];
+        //     $items = ItemController::orderFilter();
+        //     $orderFilteredItem = true;
+        // }
+    if (isset($_GET['filter'])) {
         $items = ItemController::filter();
-        $orderFilteredItem = true;
     }
-    if(isset($_GET['filter']) == 0){
+    if(count($_GET) == 0){
         $items = ItemController::index();
-    }
-    if(isset($_GET['orderFiltered'])){
-        $filter = $_GET['filter2'];
-        $items = ItemController::orderFilter();
-        $orderFilteredItem = true;
     }
 }
 

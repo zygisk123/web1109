@@ -9,7 +9,7 @@
     </div>
     <div class="form-group">
         <label for="f1">Prekės kaina</label>
-        <input type="text" name="price" id="f1" class="form-control" value="<?= ($edit)? $item->price : "" ?>">
+        <input type="number" step=".01" name="price" id="f1" class="form-control" value="<?= ($edit)? $item->price : "" ?>">
     </div>
     <div class="form-group">
         <label for="f1">Prekės aprasymas</label>

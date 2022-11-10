@@ -36,28 +36,33 @@ class ItemController{
         Item::destroy($_POST['id']);
     }
 
-    public static function filter()
-    {
-        $items = Item::filterBy();
-        return $items;
-    }
+    // public static function filter()
+    // {
+    //     $items = Item::filterBy();
+    //     return $items;
+    // }
 
-    public static function order()
-    {
-        $items = Item::orderBy();
-        return $items;
-    }
+    // public static function order()
+    // {
+    //     $items = Item::orderBy();
+    //     return $items;
+    // }
 
-    public static function orderFilter()
-    {
-        $items = Item::orderFilter();
-        return $items;
-    }
+    // public static function orderFilter()
+    // {
+    //     $items = Item::orderFilter();
+    //     return $items;
+    // }
 
     public static function getCategories()
     {
         $categories = Item::getCategories();
         return $categories;
+    }
+
+    public static function filter()
+    {
+        return Item::filter();
     }
 
 }
