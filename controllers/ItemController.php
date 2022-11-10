@@ -36,6 +36,12 @@ class ItemController{
         Item::destroy($_POST['id']);
     }
 
+    public static function filter()
+    {
+        $items = Item::filterBy();
+        return $items;
+    }
+
 }
 
 ?>

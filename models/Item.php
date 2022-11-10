@@ -58,6 +58,23 @@ class Item{
         return $item;
     }
 
+    public static function filterBy()
+    {
+        $items = [];
+        $db = new DB();
+        $query = "SELECT * FROM `items` WHERE `category` = '". $_POST['filterBy']."'";
+        // echo($query);
+        // die;
+        $result = $db->conn->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
+        }
+        // print_r($items);
+        // die;
+        $db->conn->close();
+        return $items;
+    }
+
     public function update()
     {
         $db = new DB();

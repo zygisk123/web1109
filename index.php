@@ -30,8 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST['order'])){
         $items = ItemController::index();
     }
+    if(isset($_POST['filter'])){
+        $items = ItemController::filter();
+    }
+}else{
+
+    $items = ItemController::index();
 }
-$items = ItemController::index();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,17 +81,28 @@ $items = ItemController::index();
                 </form>
             </div>
             <div class="col-4"></div>
-            <div class="dropdown">
+            <div class="dropdown col-4">
                 <form action="" method="post">
-                    <select name="orderBy">
-                        <option value="" disabled selected>ORDER BY</option>
+                    <select style = "width : 50%; display: inline-block" class="form-select form-select-sm" name="orderBy">
+                        <option value="" disabled selected>RUSIUOTI</option>
                         <option value="id">ID</option>
                         <option value="name">NAME</option>
                         <option value="category">CATEGORY</option>
                         <option value="price">PRICE</option>
                         <option value="about">ABOUT</option>
                     </select>
-                    <input type="submit" name="order" value="orderBy">
+                    <button  class="btn btn-primary mt-3 mb-3" type="submit" name="order" value="orderBy">RUSIUOTI</button>
+                </form>
+            </div>
+            <div class="dropdown col-4">
+                <form action="" method="post">
+                    <select style = "width : 50%; display: inline-block" class="form-select form-select-sm" name="filterBy">
+                        <option value="" disabled selected>Filtruoti</option>
+                        <option value="valgomojo komplektai">VALGOMOJO KOMPLEKTAI</option>
+                        <option value="virtuves baldai">VIRTUVES BALDAI</option>
+                        <option value="elektronika">ELEKTRONIKA</option>
+                    </select>
+                    <button  class="btn btn-primary mt-3 mb-3" type="submit" name="filter" value="filterBy">Filtruoti</button>
                 </form>
             </div>
             <table class="table">
