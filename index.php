@@ -32,14 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_GET['order'])){
         $items = ItemController::order();
     }elseif(isset($_GET['filter'])){
+        $filter = $_GET['filterBy'];
         $items = ItemController::filter();
         $orderFilteredItem = true;
     }else{
         $items = ItemController::index();
     }
     if(isset($_GET['orderFiltered'])){
-       // $items = ItemController::
-        echo $_GET['filter2'];
+        $filter = $_GET['filter2'];
+        $items = ItemController::orderFilter();
+        $orderFilteredItem = true;
     }
 }
 ?>
@@ -97,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <option value="about">ABOUT</option>
                     </select>
                     <?php if($orderFilteredItem){ ?>
-                        <input type="hidden" name="filter2" value="<?=$_GET['filterBy']?>">;
+                        <input type="hidden" name="filter2" value="<?=$filter?>">
                         <button  class="btn btn-primary mt-3 mb-3" type="submit" name="orderFiltered" value="orderBy">RUSIUOTI</button>
                     <?php } else { ?>
                         <button  class="btn btn-primary mt-3 mb-3" type="submit" name="order" value="orderBy">RUSIUOTI</button>

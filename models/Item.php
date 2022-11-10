@@ -87,6 +87,23 @@ class Item{
         return $items;
     }
 
+    public static function orderFilter()
+    {
+        $items = [];
+        $db = new DB();
+        $query = "SELECT * FROM `items` WHERE `category` = '". $_GET['filter2']."'" . " ORDER BY ". $_GET['orderBy'];
+        // echo($query);
+        // die;
+        $result = $db->conn->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
+        }
+        // print_r($items);
+        // die;
+        $db->conn->close();
+        return $items;
+    }
+
     public function update()
     {
         $db = new DB();

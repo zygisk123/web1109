@@ -48,6 +48,12 @@ class ItemController{
         return $items;
     }
 
+    public static function orderFilter()
+    {
+        $items = Item::orderFilter();
+        return $items;
+    }
+
 }
 
 ?>
