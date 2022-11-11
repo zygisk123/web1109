@@ -1,16 +1,17 @@
-<form action="" method="post">
-    <div class="row">
-        <div class="col-6">
-            <h1><a href = "index.php">HOME</a></h1>
-        </div>
-        <div class="col-6">
+<div class="row">
+    <div class="col-6">
+        <h1><a href = "index.php">HOME</a></h1>
+    </div>
+    <div class="col-6">
+        <form action="" method="get">
             <div class="input-group">
                 <input type="search" class="form-control rounded" name = "search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                 <button type="submit" class="btn btn-outline-primary">search</button>
             </div>
-
-        </div>
+        </form>
     </div>
+</div>
+<form action="" method="post">
     <div class="form-group">
         <label for="f1">Prekės pavadinimas</label>
         <input type="text" name="name" id="f1" class="form-control" value="<?= ($edit)? $item->name : "" ?>">

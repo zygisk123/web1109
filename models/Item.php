@@ -54,56 +54,6 @@ class Item{
         return $item;
     }
 
-    public static function orderBy()
-    {
-        $items = [];
-        $db = new DB();
-        $query = "SELECT * FROM `items` ORDER BY " . $_GET['orderBy'];
-        // echo($query);
-        // die;
-        $result = $db->conn->query($query);
-        while ($row = $result->fetch_assoc()) {
-            $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
-        }
-        // print_r($items);
-        // die;
-        $db->conn->close();
-        return $items;
-    }
-    public static function filterBy()
-    {
-        $items = [];
-        $db = new DB();
-        $query = "SELECT * FROM `items` WHERE `category` = '". $_GET['filterBy']."'";
-        // echo($query);
-        // die;
-        $result = $db->conn->query($query);
-        while ($row = $result->fetch_assoc()) {
-            $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
-        }
-        // print_r($items);
-        // die;
-        $db->conn->close();
-        return $items;
-    }
-
-    public static function orderFilter()
-    {
-        $items = [];
-        $db = new DB();
-        $query = "SELECT * FROM `items` WHERE `category` = '". $_GET['filter2']."'" . " ORDER BY ". $_GET['orderBy'];
-        // echo($query);
-        // die;
-        $result = $db->conn->query($query);
-        while ($row = $result->fetch_assoc()) {
-            $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);
-        }
-        // print_r($items);
-        // die;
-        $db->conn->close();
-        return $items;
-    }
-
     public function update()
     {
         $db = new DB();
@@ -186,9 +136,7 @@ class Item{
     {
         $items = [];
         $db = new DB();
-        $query = "SELECT * FROM `items` WHERE `title` like  \"%" . $_GET['search'] . "%\"";
-        echo $query;
-        die;
+        $query = "SELECT * FROM `items` WHERE `name` like  \"%" . $_GET['search'] . "%\"";
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
             $items[] = new Item($row['id'], $row['name'], $row['category'], $row['price'], $row['about']);

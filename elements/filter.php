@@ -4,23 +4,23 @@
             <select class="form-select" name = "filterByCategory">
                 <option selected value = "">Atrinkti</option>
                 <?php foreach($categories as $key => $category) {?>
-                    <option value="<?= $category?>"><?= $category ?></option>
+                    <option <?=(isset($_GET["filterByCategory"]))?($_GET["filterByCategory"] == $category) ? "selected" : '':'';?> value="<?= $category?>"><?= $category ?></option>
                 <?php }?>
             </select>
         </div>
         <div class="col-3">
-            <input type="text" class="form-control" name = "from" placeholder="Kaina nuo">
+            <input type="text" class="form-control" <?=(isset($_GET["from"]))?'value = '. $_GET["from"]:'';?> name = "from" placeholder="Kaina nuo">
         </div>
         <div class="col-3">
-            <input type="text" class="form-control" name = "to" placeholder="Kaina iki">
+            <input type="text" <?=(isset($_GET["to"]))?'value = '. $_GET["to"]:'';?> class="form-control" name = "to" placeholder="Kaina iki">
         </div>
         <div class="col-2">
             <select class="form-select" name = "sort">
-                <option selected value="0">Rūšiuoti</option>
-                <option value="1">price 0-9</option>
-                <option value="2">price 9-0</option>
-                <option value="3">title a-z</option>
-                <option value="4">title z-a</option>
+                <option <?=(isset($_GET["sort"]))?($_GET["sort"] == 0) ? "selected" : '':'';?> selected value="0">Rūšiuoti</option>
+                <option <?=(isset($_GET["sort"]))?($_GET["sort"] == 1) ? "selected" : '':'';?> value="1">price 0-9</option>
+                <option <?=(isset($_GET["sort"]))?($_GET["sort"] == 2) ? "selected" : '':'';?>value="2">price 9-0</option>
+                <option <?=(isset($_GET["sort"]))?($_GET["sort"] == 3) ? "selected" : '':'';?>value="3">title a-z</option>
+                <option <?=(isset($_GET["sort"]))?($_GET["sort"] == 4) ? "selected" : '':'';?>value="4">title z-a</option>
             </select>
         </div>
         <div class="col-2">

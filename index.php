@@ -1,5 +1,4 @@
 <?php
-include "./controllers/ItemController.php";
 include "./routes.php";
 ?>
 <!DOCTYPE html>
