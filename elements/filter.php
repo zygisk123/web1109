@@ -9,10 +9,10 @@
             </select>
         </div>
         <div class="col-3">
-            <input type="text" class="form-control" <?=(isset($_GET["from"]))?'value = '. $_GET["from"]:'';?> name = "from" placeholder="Kaina nuo">
+            <input type="text" class="form-control" <?=(isset($_GET["from"])) ? ($_GET["from"] != "") ? 'value = ' . $_GET["from"] : '': '';?> name = "from" placeholder="Kaina nuo">
         </div>
         <div class="col-3">
-            <input type="text" <?=(isset($_GET["to"]))?'value = '. $_GET["to"]:'';?> class="form-control" name = "to" placeholder="Kaina iki">
+            <input type="text" class="form-control" <?=(isset($_GET["to"])) ? ($_GET["to"] != "") ? 'value = ' . $_GET["to"] : '': '';?> name = "to" placeholder="Kaina iki">
         </div>
         <div class="col-2">
             <select class="form-select" name = "sort">
